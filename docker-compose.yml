@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins-i4gic_c
+    volumes:
+      - "D:/Learning/I4_GIC/S2/DevOps/storage/jenkins_home:/var/jenkins_home"
+    links:
+      - "db:database"
+  db:
+    image: mysql:latest
+    user: root
+    container_name: jenkins-i4gic_c_db
+    command: --default-authentication-plugin=mysql_native_password
+    #restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - "D:/Learning/I4_GIC/S2/DevOps/storage/mysql:/var/lib/mysql"
