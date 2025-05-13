@@ -1,6 +1,9 @@
 version: '3.7'
 services:
   jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: jenkins/jenkins:lts
     privileged: true
     user: root

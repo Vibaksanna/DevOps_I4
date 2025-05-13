@@ -1,4 +1,4 @@
-FROM jenkins/ssh-agent:jdk17-alpine
+FROM jenkins/ssh-agent:latest
 
 RUN apt update && apt install -y git php8.2 php-xml
 RUN apt install -y php-curl php-mbstring php-zip
