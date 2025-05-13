@@ -11,7 +11,18 @@ services:
     volumes:
       - "D:/Learning/I4_GIC/S2/DevOps/storage/jenkins_home:/var/jenkins_home"
     links:
-      - "db:database"
+      - agent1
+  agent1:
+    build: ./laravel-agent
+    image: i4c/laravel-agent:latest
+    container_name: jenkins-laravel-agent-i4c
+    environment:
+      - JENKINS_URL=http://localhost:8080
+      - JENKINS_AGENT_NAME=laravel-agent-I4c
+      - "JENKINS_AGENT_SSH_PUBKEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwQZHLrGbGAnd6/YnP5TB3zMHepf0Mw25LEDk3pNS0h ADMIN@DESKTOP-J0KLTHC"
+    volumes:
+      - "D:/Learning/I4_GIC/S2/DevOps/storage/jenkins_agent_home:/var/jenkins_home"
+
   db:
     image: mysql:latest
     user: root
